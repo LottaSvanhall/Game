@@ -17,22 +17,38 @@ function createBoard() {
     gameBoard.append(cellElement) //lägger in varje cell på brädet
 
   })
-
 }
 
 createBoard()
 
+function addGo(event) {
+  if (isAllowedToPlace() && event.currentTarget.firstChild == null) {
+    const goDisplay = document.createElement('div')
+    goDisplay.classList.add(go)
+    event.currentTarget.append(goDisplay) //placerar cirkel eller line i rutan vi klickat på
+    go = go === 'circle' ? 'line' : 'circle' //bestämmer vilken som är sann och vilkens tur det är
+    infoDisplay.textContent = "Det är nu " + go + "'s tur att lägga."
+    
+    checkScore() //kollar vinnande kombinationer vid varje drag
 
-function addGo(e) {
-  const goDisplay = document.createElement('div')
-  //  console.log(e.target)
-  goDisplay.classList.add(go)
-  e.target.append(goDisplay) //placerar cirkel eller line i rutan vi klickat på
+  }
+  else if (!isAllowedToPlace() && event.currentTarget.firstChild?.classList.contains(go)) {
+    infoDisplay.textContent = "Det är nu " + go + "'s tur att flytta."
+    event.currentTarget.firstChild.remove()
+  }
+}
+  //event.target.removeEventListener('click', addGo) //tar bort eventlistener och klick och den andres tur
+  
 
-  go = go === 'circle' ? 'line' : 'circle' //bestämmer vilken som är sann och vilkens tur det är
-  infoDisplay.textContent = "Det är nu " + go + "'s tur att lägga."
-  e.target.removeEventListener('click', addGo) //tar bort eventlistener och klick och den andres tur
-  checkScore() //kollar vinnande kombinationer vid varje drag
+function isAllowedToPlace() {
+  let count = 1;
+  const allSquares = document.querySelectorAll('.square')
+  for (i = 0; i < allSquares.length; i++){
+    if (allSquares[i].firstChild?.classList.contains(go)) {
+      count += 1;
+    }
+  }
+  return count<=3
 }
 
 function checkScore() {
@@ -45,7 +61,7 @@ function checkScore() {
   ]
 
   winningCombos.forEach(array => { //för varje array av de nio ovan
-    const circleWins = array.every(cell => //för varje cell i varje array
+   const circleWins = array.every(cell => //för varje cell i varje array
       allSquares[cell].firstChild?.classList.contains('circle')) //kollar av om cirkeln har en vinnande kombination
 
     if (circleWins) {
@@ -66,4 +82,5 @@ function checkScore() {
     }
   })
 
-}
+   }
+  
