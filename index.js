@@ -1,5 +1,6 @@
 const gameBoard = document.querySelector("#gameboard")
 const infoDisplay = document.querySelector("#info")
+const playerForm = document.querySelector("#playerForm")
 
 const startCells = [
   "", "", "", "", "", "", "", "", ""
@@ -81,6 +82,39 @@ function checkScore() {
       return
     }
   })
+}
 
-   }
+const players = ['', '', '', '', '']; //lista med djur
+
+const form = document.createElement('form');
+form.setAttribute('id', 'playerForm'); //id ska vara playerform går också att skriva form.id = 'playerForm';
+
+const select = document.createElement('select'); //skapar selectelement
+select.setAttribute('id', 'playerSelect'); //sätter id som är playerSelect
+select.setAttribute('name', 'players'); //sätter namn som är player, ej nödvändigt att sätta detta
+
+users.forEach(players => {
+  const option = document.createElement('option'); //loop för att skapa alla options
+  option.value = players.toLowerCase();
+  option.textContent = players; //skriver ut Hund med stor bokstav
+  select.appendChild(option); //lägger till som en option
+});
+
+const submitBtn = document.createElement('input');
+submitBtn.setAttribute('type', 'submit');
+submitBtn.value = 'Bekräfta val'; //hund med litet h kommer ifrån value
+
+form.appendChild(select);
+form.appendChild(submitBtn);
+
+document.body.appendChild(form);
+
+form.addEventListener('submit', function (event) { //eventlistner för submit
+  event.preventDefault();
+  console.dir(select)
+  console.log(select.selectedIndex);
+  const valdSpelare = select.options[select.selectedIndex].value; //vilken option index i listan är det som är aktiv och vald
+  alert('Du har valt: ' + valdSpelare);  //vi vill inte göra alert utan andra saker
+});
+
   

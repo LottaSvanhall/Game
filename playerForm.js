@@ -1,27 +1,42 @@
-const users = [
+const players = [ //array med objekt i
   {
-    username:"",
-    score:0
+    username: '',
+    score: 0,
   }
 ];
 
-document.querySelector('#loginForm').addEventListener('submit', handleLogin);
 
-function handleLogin(event) {
-  event.preventDefault();
+document.querySelector('#button').addEventListener('click', handleLogin);
+//id för form, lyssnare av formen submit, triggar funktion nedan
+JSON.parse(localStorage.getItem("players"))
+console.log(players)
+
+function handleLogin(event) { //tar in event (e)
+  event.preventDefault(); //för att ta bort originalsettings för form och använda min egen vid submit av formulär
+  //alert("Du har submittat formuläret!!")
 
   const username = document.getElementById('username').value;
   console.log("Username - ", username);
- 
-  const userExists = users.some(user =>
-    user.username === username);
+
+  players.push(username);
+  
+
+  localStorage.setItem("Players", JSON.stringify(players));
+
+  const userExists = players.some(players =>  //går igenom users listan och kollar om det liknar något vi fått in innan
+    players.username === username); //om match så blir boolean satt till true annars false 
   console.log("Did user exist - ", userExists);
 
+/*
 
-  // if (userExists) {
-  //   // window.location.href = './homepage.html';
-  //   alert('Du har loggat in!');
-  // } else {
-  //   alert('Fel användarnamn eller lösenord!');
-  // }
+  if (userExists) {  //om match
+  window.location.href = './player.html';
+    alert('Du har skapat användarnamnet!');
+  
+  } else {           //om ingen match
+  alert('Användarnamnet finns redan!');
+  }
+*/
+ 
+
 }
