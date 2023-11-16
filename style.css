@@ -63,16 +63,18 @@ section {
 }
 
 
-#playerForm {
-   
-    padding-left: 30vw;
-    padding-right: 57vw;
-    display: flex;
+#playerMenu {   
+  background-color: rgb(243, 174, 230);
+   /* padding-left: 30vw;
+    padding-right: 57vw;*/
+    width: 200px;
+    height: 50px;
+    /*display: flex;
     flex-direction: column;
     justify-content: center;
-    align-self: center;
-   
-
+    justify-self: center;*/
+    border:solid black 2px;
+  
 }
 
 .square {
