@@ -2,7 +2,7 @@
 family=Agbalumo&family=Noto+Sans:wght@100&family=Poiret+One&family=Spirax&display=swap');
 */
 body {
-  background-color: rgb(2, 119, 2);
+  background-color: rgb(83, 177, 83);
   
  /* font-family: Poiret One;*/
    
@@ -64,7 +64,7 @@ section {
 
 
 #playerMenu {   
-  background-color: rgb(243, 174, 230);
+  background-color:rgb(235, 187, 213);
    /* padding-left: 30vw;
     padding-right: 57vw;*/
     width: 200px;
@@ -113,5 +113,22 @@ section {
   box-sizing: border-box;
 
 }
+/*
+#loginForm{
+background-color: rgb(235, 187, 213);
+border: solid 1px black;
+width: 300px;
+height: 50px;
+display: flex;
 
+}*/
 
+#scoreBoard {
+  background-color: rgb(235, 187, 213);
+  width: 400px;
+  height: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  border: solid 2px black;
+
+}
