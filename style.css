@@ -1,80 +1,57 @@
-/*@import url('https://fonts.googleapis.com/css2?
-family=Agbalumo&family=Noto+Sans:wght@100&family=Poiret+One&family=Spirax&display=swap');
-*/
 body {
-  background-color: rgb(83, 177, 83);
-  
- /* font-family: Poiret One;*/
-   
+  background-color: rgb(83, 177, 83);  
 }
 
-nav { /*meny*/
+nav {
   width: 100vw;
-  padding: 2vh 0; /*lite luft uppe och nere, ingen vänster och höger*/
+  padding: 2vh 0;
   background-color: rgb(0,0,0);
-  display: flex; /*centrerad*/
+  display: flex;
   justify-content: center;
 }
 
-nav>a { /*meny*/
+nav>a {
   font-family: Spirax;
-  margin: 0 4vw; /*marginal sidor, ingen uppe och nere*/
-  font-size: 3.5vh; /*textstorlek*/
+  margin: 0 4vw; 
+  font-size: 3.5vh; 
   color: white;
-  text-decoration: none; /*tar bort understryckning av a link*/
+  text-decoration: none; 
 }
 
-h1 { /*rubriktext*/
+h1 {
   font-family: Spirax;
-  font-size: 5vh; /*storlek rubrik*/
+  font-size: 5vh;
   color: black;
-  text-align: center; /*centrerad*/
-
+  text-align: center;
 }
 
 section {
-  /*background-size: cover;*/
-  /*background-position: center;*/
-  /*padding-left: 10vw;
-  padding-right: 10vw;*/
   margin-top: 5vh;
   margin-bottom: 30vh;
-  /*height: 35vh; /*höjd på rubrik 100vh*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin: 0;
   padding: 0;
- /* height: 65vh;*/
-
 }
 
 
-#gameboard {
+#gameBoard {
   width: 300px;
   height: 300px;
   background-color: white;
   display: flex;
-  flex-wrap: wrap; /*rutorna överlappar*/
-  border: solid 1px black;
-  
+  flex-wrap: wrap;
+  border: solid 1px black; 
 }
 
 
 #playerMenu {   
   background-color:rgb(235, 187, 213);
-   /* padding-left: 30vw;
-    padding-right: 57vw;*/
     width: 200px;
     height: 50px;
-    /*display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-self: center;*/
-    border:solid black 2px;
-  
+    border:solid black 2px; 
 }
 
 .square {
@@ -83,17 +60,7 @@ section {
   background-color: white;
   border: solid 2px black;
   box-sizing:border-box;
-
 }
-
-/*p {
-  font-size: 2.5vh;
-  padding: 20px;
-  width: 80%;
-  color: white;
-  background-color: rgba(138, 0, 0, 0.8);
-  text-align: center;
-}*/
 
 .circle {
   height: 90px;
@@ -101,34 +68,29 @@ section {
   border-radius: 50%;
   border: 15px solid red;
   box-sizing: border-box;
-
 }
 
 .line {
   left: 33%;
   width: 33%;
   height: 100%;
-  position: relative; /*strecket blir i mitten av elementet*/
+  position: relative;
   background-color: black;
   box-sizing: border-box;
-
 }
-/*
-#loginForm{
-background-color: rgb(235, 187, 213);
-border: solid 1px black;
-width: 300px;
-height: 50px;
-display: flex;
-
-}*/
 
 #scoreBoard {
   background-color: rgb(235, 187, 213);
   width: 400px;
-  height: 250px;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   border: solid 2px black;
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    color: green;
+  }
 
 }

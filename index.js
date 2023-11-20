@@ -1,4 +1,4 @@
-const gameBoard = document.querySelector("#gameboard")
+const gameBoard = document.querySelector("#gameBoard")
 const infoDisplay = document.querySelector("#info")
 const playerMenu = document.querySelector("#playerMenu")
 
@@ -11,7 +11,7 @@ let lineName = "";
 
 const startCells = [
   "", "", "", "", "", "", "", "", ""
-] //för att skapa nio celler
+]
 
 
 let go = 'circle'
@@ -20,11 +20,11 @@ infoDisplay.textContent = "Cirkel börjar!"
 
 function createBoard() {
   startCells.forEach((_cell, index) => {
-    const cellElement = document.createElement('div') //skapa en cell
+    const cellElement = document.createElement('div')
     cellElement.classList.add('square')
     cellElement.id = index
     cellElement.addEventListener('click', addGo)
-    gameBoard.append(cellElement) //lägger in varje cell på brädet
+    gameBoard.append(cellElement)
 
   })
 }
@@ -35,11 +35,11 @@ function addGo(event) {
   if (isAllowedToPlace() && event.currentTarget.firstChild == null) {
     const goDisplay = document.createElement('div')
     goDisplay.classList.add(go)
-    event.currentTarget.append(goDisplay) //placerar cirkel eller line i rutan vi klickat på
-    go = go === 'circle' ? 'line' : 'circle' //bestämmer vilken som är sann och vilkens tur det är
+    event.currentTarget.append(goDisplay)
+    go = go === 'circle' ? 'line' : 'circle'
     infoDisplay.textContent = "Det är nu " + go + "'s tur att lägga."
 
-    checkScore() //kollar vinnande kombinationer vid varje drag
+    checkScore()
     round+=0.5
   }
   else if (!isAllowedToPlace() && event.currentTarget.firstChild?.classList.contains(go)) {
@@ -47,7 +47,6 @@ function addGo(event) {
     event.currentTarget.firstChild.remove()
   }
 }
-//event.target.removeEventListener('click', addGo) //tar bort eventlistener och klick och den andres tur
 
 
 function isAllowedToPlace() {
@@ -70,9 +69,9 @@ function checkScore() {
     [0, 4, 8], [2, 4, 6]
   ]
 
-  winningCombos.forEach(array => { //för varje array av de nio ovan
-    const circleWins = array.every(cell => //för varje cell i varje array
-      allSquares[cell].firstChild?.classList.contains('circle')) //kollar av om cirkeln har en vinnande kombination
+  winningCombos.forEach(array => {
+    const circleWins = array.every(cell =>
+      allSquares[cell].firstChild?.classList.contains('circle'))
 
     if (circleWins) {
       infoDisplay.textContent = "Cirkel Vinner!"
@@ -88,9 +87,9 @@ function checkScore() {
     }
   })
 
-  winningCombos.forEach(array => { //för varje array av de nio ovan
-    const lineWins = array.every(cell => //för varje cell i varje array
-      allSquares[cell].firstChild?.classList.contains('line')) //kollar av om cirkeln har en vinnande kombination
+  winningCombos.forEach(array => {
+    const lineWins = array.every(cell =>
+      allSquares[cell].firstChild?.classList.contains('line'))
 
     if (lineWins) {
       infoDisplay.textContent = "Linje Vinner!"
@@ -114,83 +113,73 @@ function choosePlayers() {
   
   const tempPlayers = localStorage.getItem("players")
   const players = tempPlayers ? JSON.parse(tempPlayers) : [];
-  //const players = JSON.parse(localStorage.getItem("players")); //hämta lista med spelare
   const label1 = document.createElement('label')
 
   const form1 = document.createElement('form');
-  const select1 = document.createElement('select'); //skapar selectelement
+  const select1 = document.createElement('select');
 
-  form1.setAttribute('id', 'playerMenu1'); //id ska vara playerform går också att skriva form.id = 'playerForm';
-  select1.setAttribute('id', 'playerSelect1'); //sätter id som är playerSelect
-
-  //select.setAttribute('name', 'players'); //sätter namn som är player, ej nödvändigt att sätta detta
+  form1.setAttribute('id', 'playerMenu1');
+  select1.setAttribute('id', 'playerSelect1');
 
   players.forEach(player => {
-    const option = document.createElement('option'); //loop för att skapa alla options
+    const option = document.createElement('option');
     option.value = player.Name; 
-    option.textContent = player.Name; //skriver ut Hund med stor bokstav
-    select1.appendChild(option); //lägger till som en option
+    option.textContent = player.Name;
+    select1.appendChild(option);
   });
 
   const submitBtn = document.createElement('input');
   submitBtn.setAttribute('type', 'submit');
-  submitBtn.value = 'Ok'; //hund med litet h kommer ifrån value
+  submitBtn.value = 'Ok';
 
   form1.appendChild(label1);
   label1.innerText = "Cirkel: "
 
   form1.appendChild(select1);
   form1.appendChild(submitBtn);
-   //console.log(playerMenu)
-   //document.body.appendChild(form1)
- playerMenu.appendChild(form1);
+  playerMenu.appendChild(form1);
 
-  form1.addEventListener('submit', function (event) { //eventlistner för submit
-    event.preventDefault();
-    console.dir(select1)
-    console.log(select1.selectedIndex);
-   circleName = select1.options[select1.selectedIndex].value; //vilken option index i listan är det som är aktiv och vald
-    //alert('Du har valt: ' + valdSpelare);  //vi vill inte göra alert utan andra saker
+  form1.addEventListener('submit', function (event) {
+   event.preventDefault();
+   console.dir(select1)
+   console.log(select1.selectedIndex);
+   circleName = select1.options[select1.selectedIndex].value; 
+    
   });
 
-/*---------Player 2-----------------*/
+/*------------------------Player 2--------------------------*/
 
   const label2 = document.createElement('label')
 
   const form2 = document.createElement('form');
-  const select2 = document.createElement('select'); //skapar selectelement
+  const select2 = document.createElement('select');
 
-  form2.setAttribute('id', 'playerMenu2'); //id ska vara playerform går också att skriva form.id = 'playerForm';
-  select2.setAttribute('id', 'playerSelect2'); //sätter id som är playerSelect
-
-  //select.setAttribute('name', 'players'); //sätter namn som är player, ej nödvändigt att sätta detta
+  form2.setAttribute('id', 'playerMenu2');
+  select2.setAttribute('id', 'playerSelect2');
 
   players.forEach(player => {
-    const option = document.createElement('option'); //loop för att skapa alla options
+    const option = document.createElement('option');
     option.value = player.Name;
-    option.textContent = player.Name; //skriver ut Hund med stor bokstav
-    select2.appendChild(option); //lägger till som en option
+    option.textContent = player.Name;
+    select2.appendChild(option);
   });
 
   const submitBtn2 = document.createElement('input');
   submitBtn2.setAttribute('type', 'submit');
-  submitBtn2.value = 'Ok'; //hund med litet h kommer ifrån value
+  submitBtn2.value = 'Ok';
 
   form2.appendChild(label2);
   label2.innerText = "Linje: "
 
   form2.appendChild(select2);
   form2.appendChild(submitBtn2);
-  //console.log(playerMenu)
-  //document.body.appendChild(form1)
   playerMenu.appendChild(form2);
 
   form2.addEventListener('submit', function (event) { //eventlistner för submit
-    event.preventDefault();
-    console.dir(select2)
-    console.log(select2.selectedIndex);
-    lineName = select2.options[select2.selectedIndex].value; //vilken option index i listan är det som är aktiv och vald
-    //alert('Du har valt: ' + valdSpelare);  //vi vill inte göra alert utan andra saker
+  event.preventDefault();
+  console.dir(select2)
+  console.log(select2.selectedIndex);
+  lineName = select2.options[select2.selectedIndex].value; 
   });
 
 }

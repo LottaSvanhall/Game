@@ -10,8 +10,8 @@
 <body>
   <header>
     <nav>
-      <a href="game.html">Spela 3 i Rad</a>
       <a href="player.html">Skapa Ny Spelare</a>
+      <a href="game.html">Spela 3 i Rad</a>
       <a href="history.html">Match Historik</a>
     </nav>
   </header>
@@ -22,16 +22,13 @@
 
     <form id="loginForm">
       <br><br>
-      <label for="username"><strong>Skriv in ditt namn:</strong></label> <!--klickar jag här aktiveras textrutan -->
-      <input type="text" placeholder="användarnamn" id="username" required> <!--required gör att man måste fylla i fältet-->
+      <label for="username"><strong>Skriv in ditt namn:</strong></label>
+      <input type="text" placeholder="användarnamn" id="username" required minlength="1">
       <button id="button">Skapa!</button>
     </form>
-
   </section>
 
-  
 </main>
 <script src="playerForm.js"></script>
 </body>
-
 </html>
