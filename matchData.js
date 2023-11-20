@@ -1,4 +1,5 @@
 const scoreBoard = document.querySelector('#scoreBoard')
+const leaderBoard = document.querySelector('#leaderBoard')
 
 function results() {
 
@@ -11,19 +12,14 @@ function results() {
   const thWinner = document.createElement("th")
   const thLoser = document.createElement("th")
   const thRounds = document.createElement("th")
- //const thScores = document.createElement("th")
 
-  
   thWinner.innerText = "Vinnare"
   thLoser.innerText = "Förlorare"
   thRounds.innerText = "Rundor"
- //thScores.innerText = "Poäng"
 
-  
   trHead.appendChild(thWinner)
   trHead.appendChild(thLoser)
   trHead.appendChild(thRounds)
-  //trHead.appendChild(thScores)
   thead.appendChild(trHead)
   table.appendChild(thead)
   table.appendChild(tbody)
@@ -36,26 +32,53 @@ function results() {
     const winner = document.createElement("td")
     const loser = document.createElement("td")
     const rounds = document.createElement("td")
-   //const playerScores = document.createElement("td")
-
+   
       winner.innerText = game.winner
       loser.innerText = game.loser
       rounds.innerText = game.rounds
-      //playerScores.innerText =
-
    
     playerRow.appendChild(winner);
     playerRow.appendChild(loser);
     playerRow.appendChild(rounds);
-    //playerRow.appendChild(playerScores);
 
     tbody.appendChild(playerRow);
   }
-
-   /*
-    // Uppdaterar text i score-kolumnen
-    //document.getElementsByClassName("playerScore")[playerIndex].innerText = users[playerIndex].score
-  */
+   
 }
 
 results()
+
+function topLeader() {
+  const players = JSON.parse(localStorage.getItem("players"))
+  const table = document.createElement('table')
+  const thead = document.createElement('thead')
+  const tbody = document.createElement('tbody')
+  const tr = document.createElement('tr')
+  const thName = document.createElement('th')
+  const thScore = document.createElement('th')
+
+  table.appendChild(thead)
+  table.appendChild(tbody)
+  leaderBoard.appendChild(table)
+  tr.appendChild(thName)
+  tr.appendChild(thScore)
+  tbody.appendChild(tr)
+
+  thName.innerText = "Spelare i topp"
+  thScore.innerText = "Poäng"
+
+ 
+  for (let player of players) {
+    const playerRow = document.createElement('tr')
+    const playerName = document.createElement('td')
+    const playerScore = document.createElement('td')
+    playerName.innerText = player.Name
+    playerScore.innerText = player.Score
+
+
+    playerRow.appendChild(playerName)
+    playerRow.appendChild(playerScore)
+    tbody.appendChild(playerRow)
+  }
+}
+topLeader()

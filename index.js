@@ -83,6 +83,10 @@ function checkScore() {
       };
       games.push(game)
       localStorage.setItem("games", JSON.stringify(games));
+      const players = JSON.parse(localStorage.getItem("players"))
+      const search = players.find((player) => player.Name === circleName);
+      search.Score += 1;
+      localStorage.setItem("players", JSON.stringify(players));
       return
     }
   })
@@ -101,6 +105,10 @@ function checkScore() {
       };
       games.push(game)
       localStorage.setItem("games", JSON.stringify(games));
+      const players = JSON.parse(localStorage.getItem("players"))
+      const search = players.find((player) => player.Name === lineName);
+      search.Score += 1;
+      localStorage.setItem("players", JSON.stringify(players));
       return
     }
       
@@ -121,6 +129,7 @@ function choosePlayers() {
   form1.setAttribute('id', 'playerMenu1');
   select1.setAttribute('id', 'playerSelect1');
 
+
   players.forEach(player => {
     const option = document.createElement('option');
     option.value = player.Name; 
@@ -140,23 +149,22 @@ function choosePlayers() {
   playerMenu.appendChild(form1);
 
   form1.addEventListener('submit', function (event) {
-   event.preventDefault();
-   console.dir(select1)
-   console.log(select1.selectedIndex);
-   circleName = select1.options[select1.selectedIndex].value; 
-    
+    event.preventDefault();
+    console.dir(select1)
+    console.log(select1.selectedIndex);
+   circleName = select1.options[select1.selectedIndex].value;
   });
 
-/*------------------------Player 2--------------------------*/
+/*------------------Player 2-----------------*/
 
   const label2 = document.createElement('label')
-
   const form2 = document.createElement('form');
   const select2 = document.createElement('select');
 
   form2.setAttribute('id', 'playerMenu2');
   select2.setAttribute('id', 'playerSelect2');
 
+  
   players.forEach(player => {
     const option = document.createElement('option');
     option.value = player.Name;
@@ -175,11 +183,11 @@ function choosePlayers() {
   form2.appendChild(submitBtn2);
   playerMenu.appendChild(form2);
 
-  form2.addEventListener('submit', function (event) { //eventlistner för submit
-  event.preventDefault();
-  console.dir(select2)
-  console.log(select2.selectedIndex);
-  lineName = select2.options[select2.selectedIndex].value; 
+  form2.addEventListener('submit', function (event) {
+    event.preventDefault();
+    console.dir(select2)
+    console.log(select2.selectedIndex);
+    lineName = select2.options[select2.selectedIndex].value;
   });
 
 }

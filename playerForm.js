@@ -7,7 +7,6 @@ const players = tempPlayers ? JSON.parse(tempPlayers) : [];
 function handleLogin() { 
   
   const username = document.getElementById('username').value;
-  //const score = document.getElementById(score).value;
 
   const userExists = players.some(players => 
     players.Name.toLowerCase() === username.toLowerCase());
